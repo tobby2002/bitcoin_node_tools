@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+
+
+
+<div class="container-fluid">
+<div class="row section-center__full">
+<div class="col-sm-12">
+</br>
+</br>
+    <h1>
+        Bitcoin Node Log File Reader
+    </h1>
+    <h6>Open your debug file</h6></br>
+
+
+    <form method="POST" action="home" enctype="multipart/form-data">
+
+        <fieldset class ="form-group">
+
+            <input type="file" class="form-control-file" name="DebugFile">
+            </br>
+
+            <button type="submit" class="btn btn-primary">START MONITORING FILE</button>
+
+
+        </fieldset>
+    </form>
+
+</div>
+</div>
+</div> 
+
+{% endblock content %}

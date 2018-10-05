@@ -1,0 +1,75 @@
+2017-10-31 16:34:03 Bitcoin version v0.13.2
+2017-10-31 16:34:03 InitParameterInteraction: parameter interaction: -whitelistforcerelay=1 -> setting -whitelistrelay=1
+2017-10-31 16:34:04 GUI: "registerShutdownBlockReason: Successfully registered: Bitcoin Core didn't yet exit safely..."
+2017-10-31 16:34:05 Default data directory C:\Users\David\AppData\Roaming\Bitcoin
+2017-10-31 16:34:05 Using data directory K:\
+2017-10-31 16:34:05 Using config file K:\bitcoin.conf
+2017-10-31 16:34:05 Using at most 125 connections (2048 file descriptors available)
+2017-10-31 16:34:05 Using 2 threads for script verification
+2017-10-31 16:34:05 Using BerkeleyDB version Berkeley DB 4.8.30: (April  9, 2010)
+2017-10-31 16:34:05 scheduler thread start
+2017-10-31 16:34:05 Using wallet wallet.dat
+2017-10-31 16:34:05 init message: Verifying wallet...
+2017-10-31 16:34:05 CDBEnv::Open: LogDir=K:\database ErrorFile=K:\db.log
+2017-10-31 16:34:05 Bound to [::]:8333
+2017-10-31 16:34:05 Bound to 0.0.0.0:8333
+2017-10-31 16:34:05 Cache configuration:
+2017-10-31 16:34:05 * Using 2.0MiB for block index database
+2017-10-31 16:34:05 * Using 8.0MiB for chain state database
+2017-10-31 16:34:05 * Using 290.0MiB for in-memory UTXO set
+2017-10-31 16:34:05 init message: Loading block index...
+2017-10-31 16:34:05 Opening LevelDB in K:\blocks\index
+2017-10-31 16:34:05 Opened LevelDB successfully
+2017-10-31 16:34:05 Using obfuscation key for K:\blocks\index: 0000000000000000
+2017-10-31 16:34:05 Opening LevelDB in K:\chainstate
+2017-10-31 16:34:09 Opened LevelDB successfully
+2017-10-31 16:34:09 Using obfuscation key for K:\chainstate: 984ef26eb5d7d2bd
+2017-10-31 16:34:44 LoadBlockIndexDB: last block file = 890
+2017-10-31 16:34:44 LoadBlockIndexDB: last block file info: CBlockFileInfo(blocks=25, size=24926476, heights=469385...469410, time=2017-06-02...2017-06-02)
+2017-10-31 16:34:44 Checking all blk files are present...
+2017-10-31 16:34:45 LoadBlockIndexDB: transaction index disabled
+2017-10-31 16:34:45 LoadBlockIndexDB: hashBestChain=0000000000000000007030440ebb110b415127076b8e7a0705d88786ea0193c0 height=469402 date=2017-06-02 17:55:57 progress=0.956522
+2017-10-31 16:34:45 init message: Rewinding blocks...
+2017-10-31 16:34:54 init message: Verifying blocks...
+2017-10-31 16:34:54 Verifying last 6 blocks at level 3
+2017-10-31 16:34:54 [0%]...[16%]...[33%]...[50%]...[66%]...[83%]...[99%]...[DONE].
+2017-10-31 16:35:13 No coin database inconsistencies in last 7 blocks (13367 transactions)
+2017-10-31 16:35:13  block index           68283ms
+2017-10-31 16:35:13 init message: Loading wallet...
+2017-10-31 16:35:13 nFileVersion = 130200
+2017-10-31 16:35:13 Keys: 0 plaintext, 213 encrypted, 213 w/ metadata, 213 total
+2017-10-31 16:35:13  wallet                  181ms
+2017-10-31 16:35:13 mapBlockIndex.size() = 477380
+2017-10-31 16:35:13 nBestHeight = 469402
+2017-10-31 16:35:13 setKeyPool.size() = 99
+2017-10-31 16:35:13 mapWallet.size() = 6
+2017-10-31 16:35:13 mapAddressBook.size() = 12
+2017-10-31 16:35:13 init message: Loading addresses...
+2017-10-31 16:35:14 torcontrol thread start
+2017-10-31 16:35:17 Loaded 64887 addresses from peers.dat  3089ms
+2017-10-31 16:35:17 init message: Loading banlist...
+2017-10-31 16:35:17 init message: Starting network threads...
+2017-10-31 16:35:17 AddLocal([2a00:23c5:3ea1:c400:1052:682f:a94f:f70a]:8333,1)
+2017-10-31 16:35:17 Discover: Office - 2a00:23c5:3ea1:c400:1052:682f:a94f:f70a
+2017-10-31 16:35:17 AddLocal([2a00:23c5:3ea1:c400:bd9b:3fdc:177:42ed]:8333,1)
+2017-10-31 16:35:17 Discover: Office - 2a00:23c5:3ea1:c400:bd9b:3fdc:177:42ed
+2017-10-31 16:35:17 AddLocal([2001:0:4137:9e76:3468:1958:26d8:2057]:8333,1)
+2017-10-31 16:35:17 Discover: Office - 2001:0:4137:9e76:3468:1958:26d8:2057
+2017-10-31 16:35:17 dnsseed thread start
+2017-10-31 16:35:17 net thread start
+2017-10-31 16:35:17 addcon thread start
+2017-10-31 16:35:17 init message: Done loading
+2017-10-31 16:35:17 opencon thread start
+2017-10-31 16:35:17 GUI: Platform customization: "windows"
+2017-10-31 16:35:17 msghand thread start
+2017-10-31 16:35:17 GUI: PaymentServer::LoadRootCAs: Loaded  51  root certificates
+2017-10-31 16:35:17 GUI: QObject::connect: No such slot RPCConsole::test() in qt/rpcconsole.cpp:668
+2017-10-31 16:35:17 GUI: QObject::connect:  (receiver name: 'RPCConsole')
+2017-10-31 16:35:28 Loading addresses from DNS seeds (could take a while)
+2017-10-31 16:35:28 receive version message: /Satoshi:0.14.1/: version 70015, blocks=492525, us=217.39.223.168:65447, peer=1
+2017-10-31 16:35:29 210 addresses found from DNS seeds
+2017-10-31 16:35:29 dnsseed thread exit
+2017-10-31 16:35:30 UpdateTip: new best=000000000000000000ab15f2368f039ea07eea4b3a6c1409a97bb63eb387323e height=469403 version=0x20000002 log2_work=86.530657 tx=228484339 date='2017-06-02 17:56:03' progress=0.956522 cache=0.0MiB(1tx)
+2017-10-31 16:35:46 UpdateTip: new best=000000000000000001ca42c442cb5307780268467b59e82553b4109293be72b6 height=469404 version=0x20000000 log2_work=86.53069 tx=228486742 date='2017-06-02 18:03:27' progress=0.956524 cache=5.0MiB(5844tx)
+2017-10-31 16:36:29 UpdateTip: new best=000000000000000000dd47ae544c413a2c92d6a3afcdd4173a49f2e12c09b8d4 height=469405 version=0x20000002 log2_work=86.530723 tx=228488406 date='2017-06-02 18:06:46' progress=0.956525 cache=10.5MiB(11133tx)
+2017-10-31 16:36:54 UpdateTip: new best=0000000000000000000afd9cfc7f55eb93dbee8c411aff957461a50caa8d4866 height=469406 version=0x20000000 log2_work=86.530756 tx=228490166 date='2017-06-02 18:07:01' progress=0.956525 cache=25.1MiB(16201tx)
