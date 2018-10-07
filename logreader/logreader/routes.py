@@ -1,10 +1,39 @@
 from logreader import app
 import configparser
 from flask import render_template
+import re
+from dateutil import parser
+from datetime import datetime
+
+
+def strip_time(line):
+    # Strips the time from a log line
+    time_strip = re.search(r'(\d+:\d+:\d+)', line)
+    return (time_strip)
 
 
 def strip_date(line):
-    return(line.split(" ")[0])
+    # Strips the date from a log line
+    date_strip = re.search(r'(\d+-\d+-\d+)', line)
+    return(date_strip)
+
+
+def update_blockchain_stats(update_tip_list, last_n):
+    # update_tip_list should be reverse sorted
+    # last_n = the last n inputs will be used to calculate
+    # estimated times, average speed b/w blocks and other variables
+
+    last_n = int(last_n)
+    if last_n > len(update_tip_list):
+        last_n = len(update_tip_list)
+    update_tip_list_last_n = update_tip_list[0:last_n]
+    last_update = update_tip_list[0]
+
+    update_stats = {
+        "last_n": last_n
+    }
+
+    return (update_stats)
 
 
 def debug_parser(filename):
@@ -22,8 +51,17 @@ def debug_parser(filename):
     init_message_list = []
     other_message_list = []
 
+    # Create initial dates as start and end
+    start_date = datetime.now()
+    end_date = datetime(2000, 1, 1,)
+
     # Separate into different lists for easier management
     for line in lines:
+        line_date = parser.parse(strip_date(line).group(0))
+        if line_date < start_date:
+            start_date = line_date
+        if line_date > end_date:
+            end_date = line_date
         if "Bitcoin version" in line:
             bitcoin_version_list.append(line)
         elif "UpdateTip" in line:
@@ -33,7 +71,16 @@ def debug_parser(filename):
         else:
             other_message_list.append(line)
 
+    # Reverse Sort some of the lists
+    init_message_list.sort(reverse=True)
+    update_tip_list.sort(reverse=True)
+    other_message_list.sort(reverse=True)
+
+    # Create a single dictionary to feed the html
     parsed_list = {
+        "file_name": filename,
+        "start_date": start_date,
+        "end_date": end_date,
         "version": bitcoin_version_list,
         "update": update_tip_list,
         "init": init_message_list,
@@ -42,8 +89,8 @@ def debug_parser(filename):
     return parsed_list
 
 
-@app.route("/")
-@app.route("/home")
+@app.route("/", methods=['GET'])
+@app.route("/home", methods=['GET'])
 def home():
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -53,9 +100,14 @@ def home():
         return (
             "Error(2): Cannot read config.ini for debugfile location")
 
+    try:
+        last_n = config['CONFIG_OPTIONS']['update_tip_list_last_n']
+    except KeyError:
+        return (
+            "Error(2): Cannot read config.ini for update_tip_list_last_n")
+
     parsed_return = debug_parser(filename)
-    print(strip_date(parsed_return["version"][0]))
 
-    # print(parsed_return)
+    update_stats = update_blockchain_stats(parsed_return["update"], last_n)
 
-    return render_template('home.html')
+    return render_template('home.html', data=parsed_return)

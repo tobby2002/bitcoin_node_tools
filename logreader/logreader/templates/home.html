@@ -1,34 +1,76 @@
 {% extends "layout.html" %}
 {% block content %}
 
-
-
-<div class="container-fluid">
-<div class="row section-center__full">
-<div class="col-sm-12">
 </br>
+<div class="row">
+    <div class="col-sm-12">
+        <h1 class="card-title">Bitcoin Node Log Monitor</h1>
+    </div>
+</div>
 </br>
-    <h1>
-        Bitcoin Node Log File Reader
-    </h1>
-    <h6>Open your debug file</h6></br>
 
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{data["start_date"].strftime('%m-%d-%Y')}}</h5>
+        <hr>
+        <p class="card-text">Log Starting Date</p>
+      </div>
+    </div>
+  </div>
 
-    <form method="POST" action="home" enctype="multipart/form-data">
+  <div class="col-sm-4">
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{data["end_date"].strftime('%m-%d-%Y')}}</h5>
+          <hr>
+          <p class="card-text">Latest Log Date</p>
+        </div>
+    </div>
+  </div>
 
-        <fieldset class ="form-group">
-
-            <input type="file" class="form-control-file" name="DebugFile">
-            </br>
-
-            <button type="submit" class="btn btn-primary">START MONITORING FILE</button>
-
-
-        </fieldset>
-    </form>
+  <div class="col-sm-4">
+    <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">
+              Running on {% set list1 = data["version"][-1].split(' ') %}
+              {{ list1[-1] }}
+          </h5>
+          <hr>
+          <p class="card-text">Latest Bitcoin Version on Log</p>
+        </div>
+    </div>
+  </div>
 
 </div>
+</br>
+<div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+                Init Messages
+            </h5>
+            <hr>
+            <p class="card-text">
+
+            <table class="table table-striped">
+                <tbody>
+
+            {% for item in data["init"] %}
+                <tr> <td> {{item}} </td> </tr>
+            {% endfor %}
+
+                </tbody>
+            </table>
+            </p>
+          </div>
+      </div>
+    </div>
 </div>
-</div> 
+
+
+
 
 {% endblock content %}
