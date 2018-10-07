@@ -3,7 +3,7 @@ import configparser
 from flask import render_template
 import re
 from dateutil import parser
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def strip_time(line):
@@ -27,12 +27,49 @@ def update_blockchain_stats(update_tip_list, last_n):
     if last_n > len(update_tip_list):
         last_n = len(update_tip_list)
     update_tip_list_last_n = update_tip_list[0:last_n]
+    # grab items from update to report
     last_update = update_tip_list[0]
+    first_update = update_tip_list[-1]
+    last_new_best = re.search('new best=(.+?) ', last_update)
+    last_height = re.search('height=(.+?) ', last_update)
+    last_version = re.search('version=(.+?) ', last_update)
+    last_tx = re.search('tx=(.+?) ', last_update)
+    last_date = re.search('date=(.+?) ', last_update)
+    first_progress = re.search('progress=(.+?) ', first_update)
+    last_progress = re.search('progress=(.+?) ', last_update)
+    last_cache = re.search('cache=(.+?)', last_update)
+    # now calculate the average of last n updates
+    last_time = datetime.strptime(
+        strip_time(last_update).group(0), "%H:%M:%S")
+    first_time = datetime.strptime(
+        strip_time(first_update).group(0), "%H:%M:%S")
+    elapsed_seconds_n = (last_time - first_time).seconds
+    progress_per_second = (
+        float(last_progress.group(0)[9:]) - float(
+            first_progress.group(0)[9:]))/elapsed_seconds_n
+    remaining_update = (1-float(last_progress.group(0)[9:]))
+    seconds_left = remaining_update / progress_per_second
+    synch_eta = datetime.now() + timedelta(seconds=seconds_left)
 
     update_stats = {
-        "last_n": last_n
+        "current_time": datetime.now(),
+        "last_n": last_n,
+        "first_time": first_time,
+        "last_time": last_time,
+        "elapsed_seconds_n": elapsed_seconds_n,
+        "last_new_best": last_new_best.group(0)[9:],
+        "last_height": last_height.group(0)[7:],
+        "last_version": last_version.group(0)[8:],
+        "last_tx": last_tx.group(0)[3:],
+        "last_date": last_date.group(0)[5:],
+        "last_progress": last_progress.group(0)[9:],
+        "last_cache": last_cache.group(0)[6:],
+        "progress_per_second": progress_per_second,
+        "remaining_perc": remaining_update,
+        "seconds_left": seconds_left,
+        "synch_eta": synch_eta
     }
-
+    print(update_stats)
     return (update_stats)
 
 
@@ -110,4 +147,4 @@ def home():
 
     update_stats = update_blockchain_stats(parsed_return["update"], last_n)
 
-    return render_template('home.html', data=parsed_return)
+    return render_template('home.html', data=parsed_return, stats=update_stats)

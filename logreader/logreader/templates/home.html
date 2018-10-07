@@ -13,9 +13,9 @@
   <div class="col-sm-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">{{data["start_date"].strftime('%m-%d-%Y')}}</h5>
-        <hr>
-        <p class="card-text">Log Starting Date</p>
+        <h6 class="card-title">{{data["start_date"].strftime('%m-%d-%Y')}}</h6>
+
+        <p class="card-text small">Log Starting Date</p>
       </div>
     </div>
   </div>
@@ -23,9 +23,9 @@
   <div class="col-sm-4">
     <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{data["end_date"].strftime('%m-%d-%Y')}}</h5>
-          <hr>
-          <p class="card-text">Latest Log Date</p>
+          <h6 class="card-title">{{data["end_date"].strftime('%m-%d-%Y')}}</h6>
+
+          <p class="card-text small">Latest Log Date</p>
         </div>
     </div>
   </div>
@@ -33,28 +33,83 @@
   <div class="col-sm-4">
     <div class="card">
         <div class="card-body">
-          <h5 class="card-title">
+          <h6 class="card-title">
               Running on {% set list1 = data["version"][-1].split(' ') %}
               {{ list1[-1] }}
-          </h5>
-          <hr>
-          <p class="card-text">Latest Bitcoin Version on Log</p>
+          </h6>
+
+          <p class="card-text small">Latest Bitcoin Version on Log</p>
         </div>
     </div>
   </div>
 
 </div>
 </br>
-<div class="row">
-    <div class="col-sm-12">
-      <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">
-                Init Messages
-            </h5>
-            <hr>
-            <p class="card-text">
 
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h6 class="card-title">{{stats["last_progress"]}}</h6>
+
+        <p class="card-text small">Last Progress</p>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{stats["last_progress"] | float * 100}}%;" aria-valuenow="{{stats["last_progress"]}}" aria-valuemin="0" aria-valuemax="100">{{"{:,.2f}".format(stats["last_progress"] | float * 100)}}%</div>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">{{stats["synch_eta"]}}</h6>
+
+          <p class="card-text small">Blockchain synch ETA</p>
+        </div>
+    </div>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="card">
+        <div class="card-body">
+          <h6 class="card-title">
+             {{stats["current_time"]}}
+         </h6>
+
+          <p class="card-text small">Last script run time</p>
+        </div>
+    </div>
+  </div>
+
+</div>
+</br>
+
+
+
+<div class="row">
+    <div class="col-sm-12 small">
+        <h5>
+            ALL Update Tip Messages
+        </h5>
+            <table class="table table-striped">
+            <tbody>
+            {% for item in data["update"] %}
+                <tr><td>  {{item}}  </td></tr>
+            {% endfor %}
+            </tbody>
+            </table>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-12 small">
+        <h5>
+            ALL Init Messages
+        </h5>
             <table class="table table-striped">
                 <tbody>
 
@@ -64,13 +119,8 @@
 
                 </tbody>
             </table>
-            </p>
-          </div>
-      </div>
     </div>
 </div>
-
-
 
 
 {% endblock content %}
