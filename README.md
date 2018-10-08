@@ -4,6 +4,8 @@ Alpha Version
 This repository's purpose is to store a few useful tools for users running
 Bitcoin Nodes.
 
+For now, there is only one application, LogReader, but the goal is to gradually create a few modules that make it easier to run and monitor a full bitcoin node. 
+
 LogReader - remote monitoring of debug.log file
 --------------------------------------------------
 Log Reader monitors the debug.log file and generates a webpage like the one belos. 
