@@ -6,9 +6,11 @@ Bitcoin Nodes.
 
 For now, there is only one application, LogReader, but the goal is to gradually create a few modules that make it easier to run and monitor a full bitcoin node. 
 
+Please make sure to pip install the packages at requirements.txt.
+
 LogReader - remote monitoring of debug.log file
 --------------------------------------------------
-Log Reader monitors the debug.log file and generates a webpage like the one belos. 
+Log Reader monitors the debug.log file and generates a webpage like the one below: 
 
 ![title](https://image.ibb.co/i9Jj4U/Screen_Shot_2018_10_07_at_4_30_55_PM.png)
 
@@ -21,4 +23,5 @@ https://stackoverflow.com/questions/37661843/how-can-one-configure-flask-to-be-a
 
 Feel free to update, modify and submit suggestions.
 All code in this repository is open for copying
-and modifying without limitations.
+and modifying without limitations as long as you credit this
+original repository. 
