@@ -110,7 +110,7 @@ def debug_parser(filename):
         if "Bitcoin version" in line:
             bitcoin_version_list.append(line)
         elif "UpdateTip" in line:
-            if strip_time(line).group(0) is not None:
+            if strip_date(line[0:11]).group(0) is not None:
                 update_tip_list.append(line)
         elif "init message" in line:
             init_message_list.append(line)
