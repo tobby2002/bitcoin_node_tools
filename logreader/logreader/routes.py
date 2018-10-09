@@ -94,7 +94,10 @@ def debug_parser(filename):
 
     # Separate into different lists for easier management
     for line in lines:
-        line_date = parser.parse(strip_date(line).group(0))
+        try:
+            line_date = parser.parse(strip_date(line).group(0))
+        except AttributeError:
+            line_date = None
         if line_date is not None:
             if line_date < start_date:
                 start_date = line_date
