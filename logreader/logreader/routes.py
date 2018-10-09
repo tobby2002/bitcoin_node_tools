@@ -69,7 +69,7 @@ def update_blockchain_stats(update_tip_list, last_n):
         "seconds_left": seconds_left,
         "synch_eta": synch_eta
     }
-    print(update_stats)
+
     return (update_stats)
 
 

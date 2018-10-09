@@ -34,8 +34,12 @@
     <div class="card">
         <div class="card-body">
           <h6 class="card-title">
+              {% if data["version"][-1] %}
               Running on {% set list1 = data["version"][-1].split(' ') %}
               {{ list1[-1] }}
+              {% else %}
+              version not Found
+              {% endif %}
           </h6>
 
           <p class="card-text small">Latest Bitcoin Version on Log</p>
