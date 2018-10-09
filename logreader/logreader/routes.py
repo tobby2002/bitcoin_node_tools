@@ -95,10 +95,11 @@ def debug_parser(filename):
     # Separate into different lists for easier management
     for line in lines:
         line_date = parser.parse(strip_date(line).group(0))
-        if line_date < start_date:
-            start_date = line_date
-        if line_date > end_date:
-            end_date = line_date
+        if line_date is not None:
+            if line_date < start_date:
+                start_date = line_date
+            if line_date > end_date:
+                end_date = line_date
         if "Bitcoin version" in line:
             bitcoin_version_list.append(line)
         elif "UpdateTip" in line:
