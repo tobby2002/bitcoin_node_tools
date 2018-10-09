@@ -110,7 +110,8 @@ def debug_parser(filename):
         if "Bitcoin version" in line:
             bitcoin_version_list.append(line)
         elif "UpdateTip" in line:
-            update_tip_list.append(line)
+            if strip_time(line).group(0) is not None:
+                update_tip_list.append(line)
         elif "init message" in line:
             init_message_list.append(line)
         else:
@@ -153,7 +154,8 @@ def home():
         return (
             "Error(2): Cannot read config.ini for update_tip_list_last_n")
 
-    print("Parsing debug file...")
+    print("Parsing Debug file")
+    print("this can take a few minutes depending on log size...")
     parsed_return = debug_parser(filename)
 
     update_stats = update_blockchain_stats(parsed_return["update"], last_n)
