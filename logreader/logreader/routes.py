@@ -69,6 +69,10 @@ def update_blockchain_stats(update_tip_list, last_n):
         "seconds_left": seconds_left,
         "synch_eta": synch_eta
     }
+    print("Finished Loading and processing Log File:")
+    print("Stats Summary:")
+    print("-"*30)
+    print(update_stats)
 
     return (update_stats)
 
@@ -133,6 +137,8 @@ def debug_parser(filename):
 @app.route("/", methods=['GET'])
 @app.route("/home", methods=['GET'])
 def home():
+    print("Status: Page Requested")
+    print("Opening Debug file...")
     config = configparser.ConfigParser()
     config.read('config.ini')
     try:
@@ -147,6 +153,7 @@ def home():
         return (
             "Error(2): Cannot read config.ini for update_tip_list_last_n")
 
+    print("Parsing debug file...")
     parsed_return = debug_parser(filename)
 
     update_stats = update_blockchain_stats(parsed_return["update"], last_n)
