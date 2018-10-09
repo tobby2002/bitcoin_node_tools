@@ -49,9 +49,9 @@ def update_blockchain_stats(update_tip_list, last_n):
             first_progress.group(0)[9:]))/elapsed_seconds_n
     remaining_update = (1-float(last_progress.group(0)[9:]))
     seconds_left = remaining_update / progress_per_second
-    synch_eta = datetime.now() + datetime.timedelta(seconds=seconds_left)
+    synch_eta = datetime.now() + timedelta(seconds=seconds_left)
     print(datetime.now())
-    print(datetime.timedelta(seconds=seconds_left))
+    print(timedelta(seconds=seconds_left))
 
     update_stats = {
         "current_time": datetime.now(),
